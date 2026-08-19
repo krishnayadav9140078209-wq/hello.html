@@ -1,0 +1,673 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>La Bella - Restaurant</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: #0f0f0f;
+            color: white;
+        }
+        /* NAVBAR */
+        
+        nav {
+            width: 100%;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #d4af37;
+        }
+        /* HERO */
+        
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, .6), rgba(0, 0, 0, .7)), url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f") center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 70px;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            padding: 14px 30px;
+            background: #d4af37;
+            color: black;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 30px;
+            transition: .3s;
+        }
+        
+        .btn:hover {
+            background: white;
+        }
+        /* GENERAL */
+        
+        section {
+            padding: 90px 8%;
+        }
+        
+        .title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .title h2 {
+            font-size: 42px;
+            color: #d4af37;
+        }
+        
+        .title p {
+            color: #aaa;
+            margin-top: 10px;
+        }
+        /* ABOUT */
+        
+        .about {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about img {
+            width: 50%;
+            border-radius: 15px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+        
+        .about-text p {
+            color: #bbb;
+            line-height: 1.8;
+        }
+        /* MENU */
+        
+        .menu {
+            background: #151515;
+        }
+        
+        .food-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .food {
+            background: #202020;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: .3s;
+        }
+        
+        .food:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, .2);
+        }
+        
+        .food img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+        }
+        
+        .food-content {
+            padding: 20px;
+        }
+        
+        .food-content h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+        
+        .food-content p {
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+        
+        .price {
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        /* OFFER */
+        
+        .offer {
+            background: linear-gradient(rgba(0, 0, 0, .65), rgba(0, 0, 0, .65)), url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0") center/cover;
+            text-align: center;
+        }
+        
+        .offer h2 {
+            font-size: 50px;
+            color: #d4af37;
+            margin-bottom: 15px;
+        }
+        
+        .offer p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        /* TESTIMONIALS */
+        
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        
+        .review {
+            background: #1c1c1c;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .review p {
+            color: #bbb;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .stars {
+            color: #d4af37;
+            font-size: 20px;
+        }
+        /* RESERVATION */
+        
+        .reservation {
+            background: #151515;
+        }
+        
+        form {
+            max-width: 650px;
+            margin: auto;
+            display: grid;
+            gap: 15px;
+        }
+        
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #292929;
+            color: white;
+            outline: none;
+        }
+        
+        textarea {
+            height: 120px;
+        }
+        
+        button {
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #d4af37;
+            color: black;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background: white;
+        }
+        /* FOOTER */
+        
+        footer {
+            padding: 40px 8%;
+            background: #050505;
+            text-align: center;
+        }
+        
+        footer .logo {
+            margin-bottom: 15px;
+        }
+        
+        footer p {
+            color: #888;
+        }
+        
+        .social {
+            margin-top: 20px;
+        }
+        
+        .social a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        /* RESPONSIVE */
+        
+        @media(max-width: 800px) {
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 15px;
+            }
+            .hero-content h1 {
+                font-size: 45px;
+            }
+            .about {
+                flex-direction: column;
+            }
+            .about img {
+                width: 100%;
+            }
+            .food-container {
+                grid-template-columns: 1fr;
+            }
+            .reviews {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">LA BELLA</div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#reservation">Book Table</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <h1>La Bella</h1>
+
+            <p>
+                Authentic Taste. Beautiful Moments.
+            </p>
+
+            <a href="#reservation" class="btn">
+                Reserve a Table
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+        <div class="title">
+            <h2>Our Story</h2>
+            <p>A taste you'll never forget</p>
+        </div>
+
+        <div class="about">
+
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5" alt="Restaurant interior">
+
+            <div class="about-text">
+
+                <h2>Welcome to La Bella</h2>
+
+                <p>
+                    La Bella is a modern restaurant inspired by traditional Italian cuisine. Our chefs combine fresh ingredients, classic recipes and modern presentation to create unforgettable dishes.
+                </p>
+
+                <br>
+
+                <p>
+                    Every plate is prepared with passion and every guest is treated like family.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MENU -->
+    <section class="menu" id="menu">
+
+        <div class="title">
+            <h2>Our Menu</h2>
+            <p>Chef's special selection</p>
+        </div>
+
+        <div class="food-container">
+
+            <div class="food">
+
+                <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002" alt="Pizza">
+
+                <div class="food-content">
+                    <h3>Margherita Pizza</h3>
+                    <p>
+                        Fresh tomato, mozzarella, basil and olive oil.
+                    </p>
+
+                    <span class="price">₹349</span>
+                </div>
+
+            </div>
+
+
+            <div class="food">
+
+                <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141" alt="Pasta">
+
+                <div class="food-content">
+                    <h3>Italian Pasta</h3>
+                    <p>
+                        Homemade pasta with creamy Italian sauce.
+                    </p>
+
+                    <span class="price">₹299</span>
+                </div>
+
+            </div>
+
+
+            <div class="food">
+
+                <img src="https://images.unsplash.com/photo-1547592180-85f173990554" alt="Salad">
+
+                <div class="food-content">
+                    <h3>Fresh Garden Salad</h3>
+                    <p>
+                        Fresh vegetables with our special dressing.
+                    </p>
+
+                    <span class="price">₹199</span>
+                </div>
+
+            </div>
+
+
+            <div class="food">
+
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" alt="Burger">
+
+                <div class="food-content">
+                    <h3>La Bella Burger</h3>
+                    <p>
+                        Juicy grilled patty, cheese and fresh vegetables.
+                    </p>
+
+                    <span class="price">₹249</span>
+                </div>
+
+            </div>
+
+
+            <div class="food">
+
+                <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307" alt="Dessert">
+
+                <div class="food-content">
+                    <h3>Chocolate Dessert</h3>
+                    <p>
+                        Rich chocolate dessert served with fresh cream.
+                    </p>
+
+                    <span class="price">₹179</span>
+                </div>
+
+            </div>
+
+
+            <div class="food">
+
+                <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd" alt="Drink">
+
+                <div class="food-content">
+                    <h3>Fresh Mojito</h3>
+                    <p>
+                        Refreshing mint, lime and sparkling water.
+                    </p>
+
+                    <span class="price">₹149</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SPECIAL OFFER -->
+    <section class="offer">
+
+        <h2>20% OFF</h2>
+
+        <p>
+            Enjoy our special weekend dinner offer.
+        </p>
+
+        <a href="#reservation" class="btn">
+            Book Now
+        </a>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+    <section id="reviews">
+
+        <div class="title">
+            <h2>Customer Reviews</h2>
+            <p>What our guests say</p>
+        </div>
+
+        <div class="reviews">
+
+            <div class="review">
+
+                <p>
+                    "Amazing food and beautiful atmosphere. One of the best restaurants I've visited!"
+                </p>
+
+                <div class="stars">★★★★★</div>
+
+                <br>
+
+                <strong>Rahul Sharma</strong>
+
+            </div>
+
+
+            <div class="review">
+
+                <p>
+                    "The pasta was absolutely delicious. The staff were friendly and professional."
+                </p>
+
+                <div class="stars">★★★★★</div>
+
+                <br>
+
+                <strong>Priya Singh</strong>
+
+            </div>
+
+
+            <div class="review">
+
+                <p>
+                    "Perfect place for a family dinner. Highly recommended!"
+                </p>
+
+                <div class="stars">★★★★★</div>
+
+                <br>
+
+                <strong>Arjun Kumar</strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- RESERVATION -->
+    <section class="reservation" id="reservation">
+
+        <div class="title">
+            <h2>Book Your Table</h2>
+            <p>We look forward to serving you</p>
+        </div>
+
+        <form onsubmit="bookTable(event)">
+
+            <input type="text" placeholder="Your Name" required>
+
+            <input type="email" placeholder="Email Address" required>
+
+            <input type="tel" placeholder="Phone Number" required>
+
+            <input type="date" required>
+
+            <select required>
+
+                <option value="">
+                    Number of Guests
+                </option>
+
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4 Guests</option>
+                <option>5 Guests</option>
+                <option>6+ Guests</option>
+
+            </select>
+
+            <textarea placeholder="Special Request">
+            </textarea>
+
+            <button type="submit">
+                Confirm Reservation
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <div class="logo">
+            LA BELLA
+        </div>
+
+        <p>
+            123 Main Street, New Delhi, India
+        </p>
+
+        <p>
+            Phone: +91 98765 43210
+        </p>
+
+        <div class="social">
+            <a href="#">Instagram</a>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+        </div>
+
+        <br>
+
+        <p>
+            © 2026 La Bella Restaurant. All Rights Reserved.
+        </p>
+
+    </footer>
+
+
+    <script>
+        function bookTable(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Your table has been reserved successfully! 🍽️"
+            );
+
+            event.target.reset();
+        }
+    </script>
+
+</body>
+
+</html>
+```

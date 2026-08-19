@@ -1,0 +1,9 @@
+body {
+    background-color: rgb(85, 236, 65);
+    font-style: italic;
+    border-color: black;
+}
+
+#Hi {
+    font-size: 60px;
+}
